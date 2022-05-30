@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\dummyAPI;
+use App\Http\Controllers\API\DevlceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Route::get('user', [UserController::class, 'index']);
 Route::apiResource('/users', UserController::class);
+
+Route::get('list/{id?}', [DevlceController::class, 'listParams']);
+Route::post('add', [DevlceController::class, 'add']);
+Route::put('update', [DevlceController::class, 'update']);
+Route::get('search/{name}', [DevlceController::class, 'search']);
+Route::get('data', [dummyAPI::class, 'getdata']);
