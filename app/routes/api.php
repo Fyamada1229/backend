@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\dummyAPI;
 use App\Http\Controllers\API\DevlceController;
+use App\Http\Controllers\API\MenberController;
+use App\Http\Controllers\API\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,15 +19,23 @@ use App\Http\Controllers\API\DevlceController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::apiResource('menber', MenberController::class);
+    Route::post('add', [DevlceController::class, 'add']);
+    Route::put('update', [DevlceController::class, 'update']);
+    Route::get('search/{name}', [DevlceController::class, 'search']);
+    Route::delete('delete/{id}', [DevlceController::class, 'delete']);
+    Route::post('save', [DevlceController::class, 'save']);
 });
 
 // Route::get('user', [UserController::class, 'index']);
 Route::apiResource('/users', UserController::class);
+Route::get('index', [DevlceController::class, 'index']);
+Route::post("login", [UserController::class, 'index']);
+Route::post("upload", [FileController::class, 'upload']);
 
-Route::get('list/{id?}', [DevlceController::class, 'listParams']);
-Route::post('add', [DevlceController::class, 'add']);
-Route::put('update', [DevlceController::class, 'update']);
-Route::get('search/{name}', [DevlceController::class, 'search']);
 Route::get('data', [dummyAPI::class, 'getdata']);

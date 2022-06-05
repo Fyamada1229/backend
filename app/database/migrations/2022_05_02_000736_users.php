@@ -16,8 +16,6 @@ class Users extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('ユーザーID');
             $table->string('name')->comment('名前');
-            $table->string('name_kana')->nullable()->comment('名前カナ');
-            $table->string('address')->comment('住所');
             $table->string('email')->comment('メールアドレス');
             $table->string('password')->comment('パスワード');
             $table->timestamps();

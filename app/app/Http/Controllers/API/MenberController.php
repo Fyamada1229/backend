@@ -3,35 +3,29 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Menber;
 
-class UserController extends Controller
+class MenberController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    function index(Request $request)
+    public function index()
     {
-        $user = User::where('email', $request->email)->first();
-        // print_r($data);
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return response([
-                'message' => ['These credentials do not match our records.']
-            ], 404);
-        }
+        return "ok";
+    }
 
-        $token = $user->createToken('my-app-token')->plainTextToken;
-
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
-
-        return response($response, 201);
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -42,11 +36,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create($request->all());
-        return response()->json(
-            $user,
-            201
-        );
+        //
     }
 
     /**
@@ -56,6 +46,17 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
         //
     }
