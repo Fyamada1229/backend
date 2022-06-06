@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Menber;
+use App\Models\Device;
+use App\Services\MenBerService;
 
 class MenberController extends Controller
 {
@@ -13,9 +15,10 @@ class MenberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(MenBerService $service)
     {
-        return "ok";
+        $menber = $service->getData();
+        return $menber;
     }
 
     /**

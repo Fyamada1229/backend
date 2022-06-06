@@ -3,45 +3,81 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Services\DeviceService;
+use App\Services\GetDataService;
 use Illuminate\Http\Request;
 use App\Models\Device;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\Add;
+use App\Http\Resources\DeviceResource;
+use App\Http\Requests\DeviceRequest;
 
 class DevlceController extends Controller
 {
 
-    function listParams($id = null)
+    function index(DeviceService $service)
     {
-        return $id ? Device::find($id) : Device::all();
+        $device = $service->getData();
+        $deviceId  = $device->find(1);
+        return new DeviceResource($deviceId);
     }
 
-    function add(Request $request)
-    {
-        $device = new Device;
-        $device->fill($request->all())->save();
-        $result = $device;
+    // function add(Request $request)
+    // {
+    //     $device = new Device;
+    //     $device->fill($request->all())->save();
+    // }
 
-        if ($result) {
-            return ["Result" => "成功しました"];
-        } else {
-            return ["Result" => "失敗をしました"];
-        }
-    }
+    // function update(Request $request)
+    // {
+    //     $device = Device::find($request->id);
+    //     $device->fill($request->all())->save();
+    //     $result = $device;
 
-    function update(Request $request)
-    {
-        $device = Device::find($request->id);
-        $device->fill($request->all())->save();
-        $result = $device;
+    //     if ($result) {
+    //         return ["Result" => "成功しました"];
+    //     } else {
+    //         return ["Result" => "失敗をしました"];
+    //     }
+    // }
 
-        if ($result) {
-            return ["Result" => "成功しました"];
-        } else {
-            return ["Result" => "失敗をしました"];
-        }
-    }
+    // function search($name)
+    // {
+    //     $device = new Device;
+    //     $device->search($name);
+    //     return $device;
+    //     //return Device::where("name", "like", "%" . $name . "%")->get();
+    // }
 
-    function search($name)
-    {
-        return Device::where("name", "like", "%" . $name . "%")->get();
-    }
+    // function delete($id)
+    // {
+    //     $device = Device::find($id);
+    //     $result = $device->delete();
+
+    //     if ($result) {
+    //         return ["Result" => "成功しました"];
+    //     } else {
+    //         return ["Result" => "失敗をしました"];
+    //     }
+    // }
+
+    // function save(Request $request)
+    // {
+    //     $rules = array(
+    //         "menber_id" => "required"
+    //     );
+    //     $validator = Validator::make($request->all(), $rules);
+    //     if ($validator->fails()) {
+    //         return response()->json($validator->errors(), 401);
+    //     } else {
+    //         $device = new Device;
+    //         $device->fill($request->all())->save();
+    //         $result = $device;
+    //         if ($result) {
+    //             return ["Result" => "成功しました"];
+    //         } else {
+    //             return ["Result" => "失敗をしました"];
+    //         }
+    //     }
+    // }
 }
