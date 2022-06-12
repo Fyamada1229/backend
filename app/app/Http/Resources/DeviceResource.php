@@ -13,7 +13,7 @@ class DeviceResource extends BaseResource
     /**
      * @var string
      */
-    //public static $wrap = '';
+    public static $wrap = 'dervice';
 
     /** Jsonに出力するリレーション */
     public $with = [];
@@ -23,6 +23,13 @@ class DeviceResource extends BaseResource
 
     /** Jsonに出力する項目 */
     protected $visible = [];
+
+    /* Jseonから除外する項目 */
+    protected $hidden = [
+        'deleted_at',
+        'deleted_user',
+    ];
+
 
     /**
      * Transform the resource into an array.

@@ -15,6 +15,7 @@ return [
     |
     */
 
+    //APIと特定の画像を対象にする例: ['api/*', 'resources/example.png']
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],

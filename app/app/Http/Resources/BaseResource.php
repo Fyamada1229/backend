@@ -19,7 +19,6 @@ class BaseResource extends JsonResource
     ];
 
 
-
     public function __construct($resource)
     {
         if ($resource instanceof Model) {

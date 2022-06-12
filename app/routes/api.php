@@ -26,7 +26,6 @@ use App\Http\Controllers\API\FileController;
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     // Route::get('index', [DevlceController::class, 'index']);
-    // Route::post('add', [DevlceController::class, 'add']);
     // Route::put('update', [DevlceController::class, 'update']);
     // Route::get('search/{name}', [DevlceController::class, 'search']);
     // Route::delete('delete/{id}', [DevlceController::class, 'delete']);
@@ -40,6 +39,7 @@ Route::post("login", [UserController::class, 'index']);
 
 
 Route::get('list', [DevlceController::class, 'index']);
+Route::post('store', [DevlceController::class, 'store']);
 
 
 Route::get('getdata', [GetDataController::class, 'gataData']);

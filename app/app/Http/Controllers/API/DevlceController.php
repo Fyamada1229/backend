@@ -18,15 +18,15 @@ class DevlceController extends Controller
     function index(DeviceService $service)
     {
         $device = $service->getData();
-        $deviceId  = $device->find(1);
-        return new DeviceResource($deviceId);
+        return new DeviceResource($device);
     }
 
-    // function add(Request $request)
-    // {
-    //     $device = new Device;
-    //     $device->fill($request->all())->save();
-    // }
+    function store(DeviceService $service, Request $request)
+    {
+        $device = $service->store($request->all());
+        return new DeviceResource($device);
+        //return $device->fill($request->all())->save();
+    }
 
     // function update(Request $request)
     // {
